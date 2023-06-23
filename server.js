@@ -58,6 +58,44 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Rota para registrar um novo usuário
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+
+  // Verificar se o usuário já existe
+  pool.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
+    if (err) {
+      console.error('Erro na consulta:', err);
+      res.send('Erro na consulta.');
+    } else {
+      const existingUser = dbRes.rows[0];
+
+      if (existingUser) {
+        res.send('Usuário já existe.');
+      } else {
+        // Hash da senha antes de armazenar no banco de dados
+        bcrypt.hash(password, 10, (err, hashedPassword) => {
+          if (err) {
+            console.error('Erro ao criar hash de senha:', err);
+            res.send('Erro ao criar hash de senha.');
+          } else {
+            // Inserir o novo usuário no banco de dados
+            pool.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)', [username, hashedPassword], (err) => {
+              if (err) {
+                console.error('Erro ao inserir novo usuário:', err);
+                res.send('Erro ao inserir novo usuário.');
+              } else {
+                res.redirect('/login');
+              }
+            });
+          }
+        });
+      }
+    }
+  });
+});
+
+
 // Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor iniciado na porta ${port}`);
