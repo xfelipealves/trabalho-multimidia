@@ -12,6 +12,7 @@ const pool = new Pool({
   database: 'banco-dados',
   password: '6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY',
   port: 5432, // porta padrão do PostgreSQL
+  ssl: true, // habilitar o uso de SSL
 });
 
 // Configuração do mecanismo de visualização EJS
