@@ -7,10 +7,10 @@ const port = 3000;
 
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'multimidia-teste',
-  password: 'feli2002',
+  user: 'wyzxglnx',
+  host: 'postgres://wyzxglnx:6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY@silly.db.elephantsql.com/wyzxglnx',
+  database: 'banco-dados',
+  password: '6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY',
   port: 5432, // porta padrão do PostgreSQL
 });
 
