@@ -25,6 +25,12 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+// Rota para exibir a página de registro
+app.get('/register', (req, res) => {
+  res.sendFile(__dirname + '/views/register.html');
+});
+
+
 app.get('/page-video.html', (req, res) => {
   res.sendFile(__dirname + '/views/page-video.html');
 });
