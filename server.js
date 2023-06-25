@@ -1,19 +1,50 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const { Pool } = require('pg');
+//const { Pool } = require('pg');
 
 const app = express();
 const port = 3000;
-
+/*
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
   user: 'wyzxglnx',
-  host: 'silly.db.elephantsql.com',
+  host: 'silly.db.elephantsql.com?ssl=true',
   database: 'banco-dados',
   password: '6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY',
   port: 5432, // porta padrão do PostgreSQL
   ssl: true, // habilitar o uso de SSL
 });
+
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados:', err);
+    return;
+  }
+  console.log('Conexão com o banco de dados estabelecida com sucesso!');
+  release(); // Libera o cliente para o pool
+});*/
+
+var pg = require('pg');
+//or native libpq bindings
+//var pg = require('pg').native
+
+var conString = "postgres://wyzxglnx:6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY@silly.db.elephantsql.com/wyzxglnx?ssl=true" //Can be found in the Details page
+var client = new pg.Client(conString);
+
+client.connect(function(err) {
+  if(err) {
+    return console.error('could not connect to postgres', err);
+  }
+  client.query('SELECT NOW() AS "theTime"', function(err, result) {
+    if(err) {
+      return console.error('error running query', err);
+    }
+    console.log(result.rows[0].theTime);
+    // >> output: 2018-08-23T14:02:57.117Z
+    //client.end();
+  });
+});
+
 
 // Configuração do mecanismo de visualização EJS
 app.set('view engine', 'ejs');
@@ -43,7 +74,7 @@ app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
   // Verificar se o usuário e a senha correspondem
-  pool.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
+  client.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
     if (err) {
       console.error('Erro na consulta:', err);
       res.send('Erro na consulta.');
@@ -70,7 +101,7 @@ app.post('/register', (req, res) => {
   const { username, password } = req.body;
 
   // Verificar se o usuário já existe
-  pool.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
+  client.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
     if (err) {
       console.error('Erro na consulta:', err);
       res.send('Erro na consulta.');
@@ -87,12 +118,13 @@ app.post('/register', (req, res) => {
             res.send('Erro ao criar hash de senha.');
           } else {
             // Inserir o novo usuário no banco de dados
-            pool.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)', [username, hashedPassword], (err) => {
+            client.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)', [username, hashedPassword], (err) => {
               if (err) {
                 console.error('Erro ao inserir novo usuário:', err);
                 res.send('Erro ao inserir novo usuário.');
               } else {
-                res.redirect('/login');
+                res.redirect('/');
+                console.log(`insert de usuario realizado`);
               }
             });
           }
@@ -107,3 +139,5 @@ app.post('/register', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor iniciado na porta ${port}`);
 });
+
+
