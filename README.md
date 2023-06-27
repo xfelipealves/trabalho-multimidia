@@ -1,43 +1,59 @@
-# Projeto de Autenticação de Usuários
+# Acesso a Servidor Multimídia
 
-Este é um projeto simples de autenticação de usuários, que permite o registro e o login de usuários em uma aplicação web. Ele consiste em duas páginas: a página de autenticação e a página de registro.
-
-## Tecnologias Utilizadas
-
-- HTML
-- CSS (opcional, se você adicionou estilos personalizados)
-- JavaScript (opcional, se você adicionou comportamentos interativos)
+Este projeto consiste na construção de um site que permite o acesso a conteúdo multimídia (áudio e vídeos) armazenados localmente ou em tempo real. O objetivo é criar uma experiência semelhante a plataformas populares como YouTube e Netflix.
 
 ## Funcionalidades
 
-- **Página de Autenticação**: Nessa página, os usuários podem inserir suas credenciais de login (nome de usuário e senha) e enviar o formulário para autenticar-se na aplicação.
+- **Autenticação de Usuário**: O site possui uma página de autenticação onde os usuários devem fazer login para acessar o conteúdo multimídia.
 
-- **Página de Registro**: Nessa página, os usuários podem registrar-se fornecendo um nome de usuário e uma senha. Essas informações são enviadas através de um formulário para a criação de uma nova conta de usuário.
+- **Visualização de Conteúdo Multimídia**: Após autenticar-se, os usuários têm a capacidade de visualizar e reproduzir o conteúdo multimídia disponível no site.
+
+## Tecnologias Utilizadas
+
+- HTML: Utilizado para a estruturação das páginas do site.
+- CSS: Utilizado para estilizar as páginas e tornar a experiência visualmente atraente.
+- JavaScript: Utilizado para adicionar interatividade e comportamentos dinâmicos ao site.
+- Node.js: Utilizado como plataforma de desenvolvimento do servidor.
+- PostgreSQL: Utilizado como banco de dados para armazenar informações de autenticação de usuários.
+- Elephantsql: Plataforma online utilizada para hospedar o banco de dados PostgreSQL.
+- Render Dashboard: Plataforma utilizada para hospedar o servidor a partir do repositório do GitHub.
 
 ## Estrutura do Projeto
 
 O projeto possui a seguinte estrutura de arquivos:
 
-- `index.html`: É a página de autenticação, onde os usuários podem fazer login.
-- `register.html`: É a página de registro, onde os usuários podem criar uma nova conta.
-- `style.css` (opcional): Caso você tenha adicionado estilos personalizados, o arquivo CSS contendo esses estilos.
-- `script.js` (opcional): Caso você tenha adicionado comportamentos interativos com JavaScript, o arquivo JS contendo esses scripts.
+- `index.html`: É a página principal do site, onde os usuários fazem login e acessam o conteúdo multimídia.
+- `media/`: Pasta que armazena os arquivos de áudio e vídeos que serão reproduzidos no site.
+- `server.js`: Arquivo Node.js responsável por gerenciar o servidor e a conexão com o banco de dados PostgreSQL.
 
 ## Executando o Projeto
 
 1. Clone ou faça o download deste repositório para o seu computador.
-2. Abra o arquivo `index.html` no seu navegador web.
-3. A partir da página de autenticação, você pode fazer login com uma conta existente ou clicar no botão "Registrar" para criar uma nova conta.
+2. Certifique-se de ter os arquivos de áudio e vídeos que deseja disponibilizar armazenados na pasta `media/`.
+3. Configure a conexão com o banco de dados PostgreSQL através da plataforma Elephantsql.
+4. Abra um terminal na pasta raiz do projeto e execute o seguinte comando para instalar as dependências do Node.js:
+```
+npm install
+```
+5. Após a conclusão da instalação, execute o seguinte comando para iniciar o servidor:
+```
+node server.js
+``` 
+6. Acesse o site através do seu navegador web e faça login para visualizar o conteúdo multimídia disponível.
 
 ## Personalização
 
-Você pode personalizar o projeto de acordo com as necessidades do seu aplicativo. Aqui estão algumas sugestões:
+Você pode personalizar o projeto de acordo com as necessidades da sua atividade. Aqui estão algumas sugestões:
 
-- Adicione estilos personalizados ao arquivo `style.css` para deixar a interface mais atraente.
-- Implemente a funcionalidade de armazenamento de usuários e autenticação no lado do servidor, usando uma linguagem ou framework de backend, como Node.js, PHP, Python, etc.
-- Adicione validação de entrada nos campos de nome de usuário e senha para garantir a integridade dos dados.
-- Expanda o projeto para incluir mais recursos, como recuperação de senha, perfis de usuário, páginas restritas, etc.
+- Adicione mais páginas e funcionalidades ao site, como uma página de registro de usuário, uma página de perfil do usuário, etc.
+- Aprimore a interface do site utilizando recursos avançados de CSS e bibliotecas/frameworks como Bootstrap.
+- Implemente recursos adicionais, como a capacidade de criar listas de reprodução, recomendações de conteúdo, etc.
+- Explore outras opções de hospedagem de servidor, como Heroku, AWS, Google Cloud, etc.
+- Implemente recursos adicionais de segurança, como criptografia de dados sensíveis, autenticação de dois fatores, etc.
+- Melhore a escalabilidade do sistema, permitindo o carregamento assíncrono de conteúdo multimídia e o uso de serviços de cache.
+- Otimize o desempenho do site, realizando a compressão de arquivos de mídia e a implementação de técnicas de cache.
+- Adicione recursos de compartilhamento e integração com redes sociais para promover o conteúdo multimídia.
 
 ## Contribuição
 
-Contribuições são bem-vindas! Se você tiver sugestões, melhorias ou correções, sinta-se à vontade para enviar um pull request ou abrir uma issue.
+Se desejar contribuir com este projeto, fique à vontade para abrir issues e enviar pull requests. Serão bem-vindas sugestões, correções de bugs e melhorias.
