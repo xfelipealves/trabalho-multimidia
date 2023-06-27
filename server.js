@@ -1,36 +1,17 @@
+// Importando módulos
 const express = require('express');
 const bcrypt = require('bcrypt');
-//const { Pool } = require('pg');
+var pg = require('pg');
 
+// Configurando servidor
 const app = express();
 const port = 3000;
-/*
-// Configuração da conexão com o banco de dados
-const pool = new Pool({
-  user: 'wyzxglnx',
-  host: 'silly.db.elephantsql.com?ssl=true',
-  database: 'banco-dados',
-  password: '6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY',
-  port: 5432, // porta padrão do PostgreSQL
-  ssl: true, // habilitar o uso de SSL
-});
 
-pool.connect((err, client, release) => {
-  if (err) {
-    console.error('Erro ao conectar ao banco de dados:', err);
-    return;
-  }
-  console.log('Conexão com o banco de dados estabelecida com sucesso!');
-  release(); // Libera o cliente para o pool
-});*/
-
-var pg = require('pg');
-//or native libpq bindings
-//var pg = require('pg').native
-
+// Configurando conexão com Banco de Dados PostgreSQL
 var conString = "postgres://wyzxglnx:6cfp01AnXoMzdLpto0QUj8FUIRgbN0iY@silly.db.elephantsql.com/wyzxglnx?ssl=true" //Can be found in the Details page
 var client = new pg.Client(conString);
 
+// Conectando ao Banco de Dados
 client.connect(function(err) {
   if(err) {
     return console.error('could not connect to postgres', err);
@@ -41,12 +22,10 @@ client.connect(function(err) {
     }
     console.log(result.rows[0].theTime);
     // >> output: 2018-08-23T14:02:57.117Z
-    //client.end();
   });
 });
 
-
-// Configuração do mecanismo de visualização EJS
+// Configuração do mecanismo de visualização EJS para renderizar as páginas em HTML
 app.set('view engine', 'ejs');
 
 // Middleware para analisar o corpo das solicitações
@@ -62,11 +41,12 @@ app.get('/register', (req, res) => {
   res.sendFile(__dirname + '/views/register.html');
 });
 
-
+// Rota para exibir a página de vídeo
 app.get('/page-video.html', (req, res) => {
   res.sendFile(__dirname + '/views/page-video.html');
 });
 
+// Define o diretório de arquivos estáticos para servir arquivos HTML, CSS, JavaScript, etc.
 app.use(express.static(__dirname + '/views'));
 
 // Rota para processar o login
@@ -75,19 +55,21 @@ app.post('/login', (req, res) => {
 
   // Verificar se o usuário e a senha correspondem
   client.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
+    // Valida se a consulta foi feita com sucesso
     if (err) {
       console.error('Erro na consulta:', err);
       res.send('Erro na consulta.');
     } else {
       const user = dbRes.rows[0];
 
+      // Verifica se o usuário existe no Banco de Dados
       if (!user) {
         res.send('Usuário não encontrado.');
-      } else {
+      } else { // Verifica se a senha fornecida é a mesma que está salva para este usuário
         bcrypt.compare(password, user.password, (err, result) => {
-          if (result) {
+          if (result) { //Caso seja sucesso, será redirecionado para a página
             res.redirect('/page-video.html');
-          } else {
+          } else { //Caso a senha não bate, receberá a seguinte mensagem
             res.send('Nome de usuário ou senha incorretos.');
           }
         });
@@ -102,27 +84,30 @@ app.post('/register', (req, res) => {
 
   // Verificar se o usuário já existe
   client.query('SELECT * FROM usuarios WHERE username = $1', [username], (err, dbRes) => {
+    // Valida se a consulta foi feita com sucesso
     if (err) {
       console.error('Erro na consulta:', err);
       res.send('Erro na consulta.');
     } else {
       const existingUser = dbRes.rows[0];
 
+      // Verifica se o usuário já existe no Banco de Dados
       if (existingUser) {
         res.send('Usuário já existe.');
       } else {
-        // Hash da senha antes de armazenar no banco de dados
+        // Hash da senha antes de armazenar no banco de dados (utilizando bycript)
         bcrypt.hash(password, 10, (err, hashedPassword) => {
-          if (err) {
+          if (err) { // Caso dê erro ao criar Hash da senha
             console.error('Erro ao criar hash de senha:', err);
             res.send('Erro ao criar hash de senha.');
           } else {
             // Inserir o novo usuário no banco de dados
             client.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)', [username, hashedPassword], (err) => {
+              // Valida se o insert foi feito com sucesso
               if (err) {
                 console.error('Erro ao inserir novo usuário:', err);
                 res.send('Erro ao inserir novo usuário.');
-              } else {
+              } else { // Se der certo, ele será redirecionado para a página index.html
                 res.redirect('/');
                 console.log(`insert de usuario realizado`);
               }
@@ -134,10 +119,7 @@ app.post('/register', (req, res) => {
   });
 });
 
-
 // Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor iniciado na porta ${port}`);
 });
-
-
