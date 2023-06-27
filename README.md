@@ -14,8 +14,10 @@ Este projeto consiste na construção de um site que permite o acesso a conteúd
 - CSS: Utilizado para estilizar as páginas e tornar a experiência visualmente atraente.
 - JavaScript: Utilizado para adicionar interatividade e comportamentos dinâmicos ao site.
 - Node.js: Utilizado como plataforma de desenvolvimento do servidor.
+- Express: Framework do Node.js utilizado para simplificar o desenvolvimento de aplicações web.
 - PostgreSQL: Utilizado como banco de dados para armazenar informações de autenticação de usuários.
 - Elephantsql: Plataforma online utilizada para hospedar o banco de dados PostgreSQL.
+- Bcrypt: Biblioteca utilizada para realizar o hash das senhas dos usuários de forma segura.
 - Render Dashboard: Plataforma utilizada para hospedar o servidor a partir do repositório do GitHub.
 
 ## Estrutura do Projeto
