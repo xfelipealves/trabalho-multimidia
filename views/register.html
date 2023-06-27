@@ -5,14 +5,21 @@
 </head>
 <body>
   <h1>Registro de Usuário</h1>
+  <!-- Título da página -->
+
   <form action="/register" method="POST">
+    <!-- Formulário para registro de usuário, que será submetido à rota "/register" via método POST -->
+
     <label for="username">Nome de Usuário:</label>
+    <!-- Campo de entrada para o nome de usuário -->
     <input type="text" id="username" name="username" required><br><br>
 
     <label for="password">Senha:</label>
+    <!-- Campo de entrada para a senha -->
     <input type="password" id="password" name="password" required><br><br>
 
     <input type="submit" value="Registrar">
+    <!-- Botão de envio do formulário -->
   </form>
 </body>
 </html>

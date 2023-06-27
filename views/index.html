@@ -5,14 +5,24 @@
 </head>
 <body>
   <h1>Bem-vindo!</h1>
+  <!-- Título da página -->
 
   <!-- Formulário de login -->
   <form action="/login" method="POST">
+    <!-- O formulário será submetido à rota "/login" usando o método POST -->
+
     <label for="username">Usuário:</label>
+    <!-- Rótulo para o campo de entrada de nome de usuário -->
     <input type="text" id="username" name="username" required><br><br>
+    <!-- Campo de entrada de nome de usuário -->
+    
     <label for="password">Senha:</label>
+    <!-- Rótulo para o campo de entrada de senha -->
     <input type="password" id="password" name="password" required><br><br>
+    <!-- Campo de entrada de senha -->
+
     <input type="submit" value="Entrar">
+    <!-- Botão de envio do formulário para fazer login -->
   </form>
   <!-- Fim do formulário de login -->
 
@@ -20,7 +30,10 @@
 
   <!-- Formulário de registro -->
   <form action="/register" method="GET">
+    <!-- O formulário será submetido à rota "/register" usando o método GET -->
+
     <input type="submit" value="Registrar">
+    <!-- Botão de envio do formulário para a página de registro -->
   </form>
   <!-- Fim do formulário de registro -->
 </body>
