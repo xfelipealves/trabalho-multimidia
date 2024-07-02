@@ -43,6 +43,10 @@ This project involves building a website that allows access to multimedia conten
     ```
 6. Access the site via your web browser and log in to view available multimedia content.
 
+## Hosting
+
+This project is hosted on Render and can be accessed at: [https://trabalho-hr9h.onrender.com/](https://trabalho-hr9h.onrender.com/)
+
 ## Contribution
 
 Feel free to open issues and submit pull requests. Suggestions, bug fixes, and improvements are welcome.
