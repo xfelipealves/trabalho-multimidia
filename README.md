@@ -1,61 +1,48 @@
-# Acesso a Servidor Multimídia
+# Multimedia Server Access
 
-Este projeto consiste na construção de um site que permite o acesso a conteúdo multimídia (áudio e vídeos) armazenados localmente ou em tempo real. O objetivo é criar uma experiência semelhante a plataformas populares como YouTube e Netflix.
+This project involves building a website that allows access to multimedia content (audio and videos) stored locally or in real-time. The goal is to create an experience similar to popular platforms like YouTube and Netflix.
 
-## Funcionalidades
+## Features
 
-- **Autenticação de Usuário**: O site possui uma página de autenticação onde os usuários devem fazer login para acessar o conteúdo multimídia.
+- **User Authentication**: Users must log in to access multimedia content.
+- **Multimedia Viewing**: Authenticated users can view and play the multimedia content available on the site.
 
-- **Visualização de Conteúdo Multimídia**: Após autenticar-se, os usuários têm a capacidade de visualizar e reproduzir o conteúdo multimídia disponível no site.
+## Technologies Used
 
-## Tecnologias Utilizadas
+- **HTML**: For structuring the web pages.
+- **CSS**: For styling the web pages and enhancing visual appeal.
+- **JavaScript**: For adding interactivity and dynamic behaviors to the site.
+- **Node.js**: As the server-side platform.
+- **Express**: A Node.js framework for simplifying web application development.
+- **PostgreSQL**: For storing user authentication information.
+- **Elephantsql**: Online platform for hosting the PostgreSQL database.
+- **Bcrypt**: Library for securely hashing user passwords.
+- **Render Dashboard**: Platform for hosting the server from the GitHub repository.
 
-- HTML: Utilizado para a estruturação das páginas do site.
-- CSS: Utilizado para estilizar as páginas e tornar a experiência visualmente atraente.
-- JavaScript: Utilizado para adicionar interatividade e comportamentos dinâmicos ao site.
-- Node.js: Utilizado como plataforma de desenvolvimento do servidor.
-- Express: Framework do Node.js utilizado para simplificar o desenvolvimento de aplicações web.
-- PostgreSQL: Utilizado como banco de dados para armazenar informações de autenticação de usuários.
-- Elephantsql: Plataforma online utilizada para hospedar o banco de dados PostgreSQL.
-- Bcrypt: Biblioteca utilizada para realizar o hash das senhas dos usuários de forma segura.
-- Render Dashboard: Plataforma utilizada para hospedar o servidor a partir do repositório do GitHub.
+## Project Structure
 
-## Estrutura do Projeto
+- `index.html`: The main page where users log in and access multimedia content.
+- `media/`: Directory for storing audio and video files to be played on the site.
+- `server.js`: Node.js file managing the server and PostgreSQL database connection.
 
-O projeto possui a seguinte estrutura de arquivos:
+## How to Run
 
-- `index.html`: É a página principal do site, onde os usuários fazem login e acessam o conteúdo multimídia.
-- `media/`: Pasta que armazena os arquivos de áudio e vídeos que serão reproduzidos no site.
-- `server.js`: Arquivo Node.js responsável por gerenciar o servidor e a conexão com o banco de dados PostgreSQL.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/xfelipealves/trabalho-multimidia.git
+    ```
+2. Ensure audio and video files to be made available are stored in the `media/` folder.
+3. Configure PostgreSQL database connection via Elephantsql.
+4. Open a terminal in the project's root directory and install Node.js dependencies:
+    ```bash
+    npm install
+    ```
+5. Start the server:
+    ```bash
+    node server.js
+    ```
+6. Access the site via your web browser and log in to view available multimedia content.
 
-## Executando o Projeto
+## Contribution
 
-1. Clone ou faça o download deste repositório para o seu computador.
-2. Certifique-se de ter os arquivos de áudio e vídeos que deseja disponibilizar armazenados na pasta `media/`.
-3. Configure a conexão com o banco de dados PostgreSQL através da plataforma Elephantsql.
-4. Abra um terminal na pasta raiz do projeto e execute o seguinte comando para instalar as dependências do Node.js:
-```
-npm install
-```
-5. Após a conclusão da instalação, execute o seguinte comando para iniciar o servidor:
-```
-node server.js
-``` 
-6. Acesse o site através do seu navegador web e faça login para visualizar o conteúdo multimídia disponível.
-
-## Personalização
-
-Você pode personalizar o projeto de acordo com as necessidades da sua atividade. Aqui estão algumas sugestões:
-
-- Adicione mais páginas e funcionalidades ao site, como uma página de registro de usuário, uma página de perfil do usuário, etc.
-- Aprimore a interface do site utilizando recursos avançados de CSS e bibliotecas/frameworks como Bootstrap.
-- Implemente recursos adicionais, como a capacidade de criar listas de reprodução, recomendações de conteúdo, etc.
-- Explore outras opções de hospedagem de servidor, como Heroku, AWS, Google Cloud, etc.
-- Implemente recursos adicionais de segurança, como criptografia de dados sensíveis, autenticação de dois fatores, etc.
-- Melhore a escalabilidade do sistema, permitindo o carregamento assíncrono de conteúdo multimídia e o uso de serviços de cache.
-- Otimize o desempenho do site, realizando a compressão de arquivos de mídia e a implementação de técnicas de cache.
-- Adicione recursos de compartilhamento e integração com redes sociais para promover o conteúdo multimídia.
-
-## Contribuição
-
-Se desejar contribuir com este projeto, fique à vontade para abrir issues e enviar pull requests. Serão bem-vindas sugestões, correções de bugs e melhorias.
+Feel free to open issues and submit pull requests. Suggestions, bug fixes, and improvements are welcome.
